@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.JokesAnswer)
             </th>
+            <th>
+                UserID
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,6 +32,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.JokesAnswer)
+            </td>
+            <td>
+                @User.Identity.Name
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
