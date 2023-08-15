@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JokesWebApp.Data;
 using JokesWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokesWebApp.Controllers
 {
@@ -20,6 +21,7 @@ namespace JokesWebApp.Controllers
         }
 
         // GET: Jokes
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Jokes != null ? 
@@ -58,6 +60,7 @@ namespace JokesWebApp.Controllers
         }
 
         // GET: Jokes/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -68,6 +71,7 @@ namespace JokesWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("ID,JokesQuestion,JokesAnswer")] Jokes jokes)
         {
             if (ModelState.IsValid)
@@ -80,6 +84,7 @@ namespace JokesWebApp.Controllers
         }
 
         // GET: Jokes/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Jokes == null)
@@ -100,6 +105,7 @@ namespace JokesWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ID,JokesQuestion,JokesAnswer")] Jokes jokes)
         {
             if (id != jokes.ID)
@@ -131,6 +137,7 @@ namespace JokesWebApp.Controllers
         }
 
         // GET: Jokes/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Jokes == null)
@@ -151,6 +158,7 @@ namespace JokesWebApp.Controllers
         // POST: Jokes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Jokes == null)
